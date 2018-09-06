@@ -54,16 +54,16 @@ class App extends Component {
   componentWillMount() {}
 
   componentDidMount() {
-    this.getShop(this.list);
-    // axios
-    //   .get(url)
-    //   .then(res => {
-    //     console.log("result", res.data.results);
-    //     this.getShop(res.data.results);
-    //   })
-    //   .catch(err => {
-    //     console.log("Error fetching data", err);
-    //   });
+    // this.getShop(this.list);
+    axios
+      .get(url)
+      .then(res => {
+        console.log("result", res.data.error_message);
+        this.getShop(res.data.results);
+      })
+      .catch(err => {
+        console.log("Error fetching data", err);
+      });
   }
 
   handleDislike(name) {
