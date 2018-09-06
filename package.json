@@ -1,0 +1,18 @@
+{
+  "name": "hiddenfounders",
+  "version": "1.0.0",
+  "description": "A nearest by shop finder",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd founder && npm run start",
+    "server": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aboubacar Issahaka",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.13"
+  }
+}

@@ -1,0 +1,22 @@
+.shop {
+  margin-bottom: 2rem;
+  height: auto;
+  padding: 10px;
+}
+
+.shop-item {
+  height: 100%;
+}
+
+.image-placeholder {
+  height: 50%;
+  width: 90%;
+  margin: auto;
+}
+
+.btn-action li {
+  margin-right: 15px;
+}
+.btn-action ul {
+  display: inline-flex;
+}
