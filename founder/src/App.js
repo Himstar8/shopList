@@ -1,19 +1,23 @@
-import React, { Component } from "react";
-import ShopList from "./component/shop-list/shop-list";
-import Navbar from "./component/layout/navbar";
-import Footer from "./component/layout/footer";
-import Pagination from "react-js-pagination";
-import "./App.css";
-import axios from "axios";
+import React, { Component } from 'react';
+import ShopList from './component/shop-list/shop-list';
+import Navbar from './component/layout/navbar';
+import Footer from './component/layout/footer';
+import Pagination from 'react-js-pagination';
+import './App.css';
+import axios from 'axios';
+import LikedShop from './component/pages/liked';
+import { Route } from 'react-router';
+import Shops from './component/pages/shops';
+import AddTodo from './component/todos';
 
 const url =
-  "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?" +
-  "key=AIzaSyB2dGnQCr3Aej6iGVESCbZLxMFqCS1pbm4" +
-  "&location=33.595442,-7.617528" +
-  "&radius=16000" +
-  "&sensor=false" +
-  "&types=restaurant" +
-  "&keyword=fast";
+  'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?' +
+  'key=AIzaSyB2dGnQCr3Aej6iGVESCbZLxMFqCS1pbm4' +
+  '&location=33.595442,-7.617528' +
+  '&radius=16000' +
+  '&sensor=false' +
+  '&types=restaurant' +
+  '&keyword=fast';
 
 class App extends Component {
   constructor() {
@@ -30,23 +34,23 @@ class App extends Component {
   }
   list = [
     {
-      name: "starbuck",
+      name: 'starbuck',
       distance: 300
     },
     {
-      name: "Zara",
+      name: 'Zara',
       distance: 350
     },
     {
-      name: "Starbuck",
+      name: 'Starbuck',
       distance: 300
     },
     {
-      name: "Café de France",
+      name: 'Café de France',
       distance: 1000
     },
     {
-      name: "Chez Nabil",
+      name: 'Chez Nabil',
       distance: 60
     }
   ];
@@ -54,16 +58,16 @@ class App extends Component {
   componentWillMount() {}
 
   componentDidMount() {
-    // this.getShop(this.list);
-    axios
-      .get(url)
-      .then(res => {
-        console.log("result", res.data.error_message);
-        this.getShop(res.data.results);
-      })
-      .catch(err => {
-        console.log("Error fetching data", err);
-      });
+    this.getShop(this.list);
+    // axios
+    //   .get(url)
+    //   .then(res => {
+    //     console.log('result', res.data.error_message);
+    //     this.getShop(res.data.results);
+    //   })
+    //   .catch(err => {
+    //     console.log('Error fetching data', err);
+    //   });
   }
 
   handleDislike(name) {
@@ -76,16 +80,16 @@ class App extends Component {
       likedShop: [...this.state.likedShop, shop]
     });
 
-    let arrG = JSON.stringify(localStorage.getItem("liked"));
+    let arrG = JSON.stringify(localStorage.getItem('liked'));
 
-    console.log("arrg", arrG);
+    console.log('arrg', arrG);
 
     // localStorage.setItem("liked", arr);
 
     this.list = this.list.filter(c => c.name !== shop.name);
     this.getShop(this.list);
 
-    console.log("handle like", this.state.likedShop);
+    console.log('handle like', this.state.likedShop);
   }
 
   getShop(arr) {
@@ -95,7 +99,7 @@ class App extends Component {
     this.setState({
       shopList: [...arr]
     });
-    console.log("after sorting", arr);
+    console.log('after sorting', arr);
   }
 
   handlePageChange(pageNumber) {
@@ -108,14 +112,14 @@ class App extends Component {
     return (
       <React.Fragment>
         <Navbar />
+        <Route exact path="/liked" component={LikedShop} />
+        <Route exact path="/shops" component={Shops} />
         <br />
-        <div>
-          <ShopList
-            like={this.handleLike}
-            dislike={this.handleDislike}
-            shoplist={this.state.shopList}
-          />
-        </div>
+        <ShopList
+          like={this.handleLike}
+          dislike={this.handleDislike}
+          shoplist={this.state.shopList}
+        />
         <div className="container center-align">
           <Pagination
             activePage={this.state.activePage}
@@ -125,6 +129,9 @@ class App extends Component {
             onChange={this.handlePageChange}
           />
         </div>
+        <hr />
+
+        <AddTodo />
 
         <Footer />
       </React.Fragment>

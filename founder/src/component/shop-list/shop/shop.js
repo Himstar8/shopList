@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import img from "../../../dist/shop.png";
+import React, { Component } from 'react';
+import img from '../../../dist/shop.png';
 
 class Shop extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class Shop extends Component {
                   <small>{name}</small>
                 </div>
                 <div className="image-placeholder">
-                  <img src={img} width="90%" />
+                  <img src={img} alt="" width="90%" />
                 </div>
                 <div className="btn-action center-align">
                   <ul>

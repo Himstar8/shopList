@@ -1,12 +1,13 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
   handleLogin() {
-    console.log("A user attempting to login");
+    console.log('A user attempting to login');
   }
 
   handleRegister() {
-    console.log("A user attempting to register");
+    console.log('A user attempting to register');
   }
 
   render() {
@@ -43,18 +44,12 @@ class Navbar extends Component {
             <div className="nav-content">
               <ul className="tabs tabs-transparent">
                 <li className="tab">
-                  <a href="#test1">Test 1</a>
+                  <Link to="/shops">Shop List</Link>
                 </li>
                 <li className="tab">
-                  <a className="active" href="#test2">
-                    Test 2
-                  </a>
-                </li>
-                <li className="tab disabled">
-                  <a href="#test3">Disabled Tab</a>
-                </li>
-                <li className="tab">
-                  <a href="#test4">Test 4</a>
+                  <Link className="active" to="/liked">
+                    Liked Shop
+                  </Link>
                 </li>
               </ul>
             </div>
